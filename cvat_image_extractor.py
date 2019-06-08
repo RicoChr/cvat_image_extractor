@@ -124,7 +124,10 @@ def main():
                 directory = "cvat_ie_output/" + currentTrack.get('label') + "/"
                 if not os.path.exists(directory):
                     os.makedirs(directory)
-                cv2.imwrite(directory + str(labelCountsDict[currentTrack.get('label')]) + ".png", roi)
+                if not os.path.exists("cvat_ie_output/all_data/"):
+                    os.makedirs("cvat_ie_output/all_data/")
+                cv2.imwrite(directory + currentTrack.get('label') + str(labelCountsDict[currentTrack.get('label')]) + ".png", roi)
+                cv2.imwrite("cvat_ie_output/all_data/" + currentTrack.get('label') + str(labelCountsDict[currentTrack.get('label')]) + ".png", roi)
                 labelCountsDict[currentTrack.get('label')] += 1
         if frameTime != 0:
             cv2.waitKey(frameTime)
