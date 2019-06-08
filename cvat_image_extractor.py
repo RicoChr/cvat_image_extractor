@@ -109,7 +109,7 @@ def main():
                 ybr = round(float(currentTrack.find('box').get('ybr')))
                 roi = extractROI(frame, xtl, ytl, xbr, ybr)
                 cv2.imshow("ROI", roi)
-                directory = "output/" + currentTrack.get('label') + "/"
+                directory = "cvat_ie_output/" + currentTrack.get('label') + "/"
                 if not os.path.exists(directory):
                     os.makedirs(directory)
                 cv2.imwrite(directory + str(labelCountsDict[currentTrack.get('label')]) + ".png", roi)
